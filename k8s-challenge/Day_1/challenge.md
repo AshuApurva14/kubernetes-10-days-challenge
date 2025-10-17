@@ -42,6 +42,9 @@ It takes care of:
 
 ---
 
+### Key Takeaways
+
+
 **Kubernetes** = **Container Management** done **declaratively and automatically**.
 
 You give it a goal — and it works to match reality to that goal.
