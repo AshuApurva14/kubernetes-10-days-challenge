@@ -1,6 +1,6 @@
 # Kubernetes 10 Days Challenge
 
-![Image](https://github.com/user-attachments/assets/c928be5c-3a02-49a8-ba8c-eb0bc9746598)
+<img width="1024" height="1024" alt="Image" src="https://github.com/user-attachments/assets/c5f0a0bd-6bfb-4786-8166-a5ba97f47ec5" />
 
 A structured learning path to master Kubernetes fundamentals through daily challenges and hands-on exercises.
 
