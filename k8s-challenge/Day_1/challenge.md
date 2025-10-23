@@ -1,5 +1,7 @@
 ## Learn Kubernetes the Right Way --  Starting with the Basics
 
+## Day 1
+
 **Let’s Not Pretend Kubernetes Is Easy — But It’s Learnable** 💡
 
 **Kubernetes** is an **open-source platform** that helps you manage **containerized** application automatically.
