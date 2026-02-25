@@ -11,6 +11,45 @@ Kubernetes supports two types of Label selectors:
 
 Below are the real practical implementations of labels and selectors:
 
+
+```bash
+#pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: frontend
+    environment: production
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx:1.7.9
+    ports:
+    - containerPort: 80
+```
+-----
+
+```bash
+# pod2.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod2
+  labels:
+    app: backend
+    environment: production
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx:1.7.9
+    ports:
+    - containerPort: 80
+
+```
+-----
+
 ```bash
 controlplane /home/example ➜  vi pod.yaml 
 
