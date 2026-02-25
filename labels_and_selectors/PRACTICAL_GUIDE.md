@@ -6,7 +6,7 @@ Kubernetes supports two types of Label selectors:
 
 1. Equality-based
    - Three kinds of operators are admitted ( =,==,!=).
-     Example:
+   - Example:
       ```bash
        environment = production
       tier != frontend
@@ -15,7 +15,7 @@ Kubernetes supports two types of Label selectors:
 3. Set-based
 
    - Three kinds of operators are supported: in,notin and exists (only the key identifier).
-     Example:
+   - Example:
 
      ```bash
       environment in (production, qa)
