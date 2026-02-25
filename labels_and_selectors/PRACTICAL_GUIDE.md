@@ -172,3 +172,202 @@ nginx-pod2   1/1     Running   0          106s
 controlplane /home/example ➜  
 ```
 
+### Define a Service using Label Selector
+
+Create a `service.yaml` and define a label selector for each of the pods.
+
+```bash
+# Service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+```
+
+```bash
+controlplane /home/example ➜  vi service.yaml
+
+controlplane /home/example ➜  kubectl apply -f service.yaml 
+service/nginx-service created
+
+controlplane /home/example ➜  kubectl get svc
+NAME            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+kubernetes      ClusterIP   172.20.0.1      <none>        443/TCP   79m
+nginx-service   ClusterIP   172.20.252.19   <none>        80/TCP    11s
+
+controlplane /home/example ➜  kubectl get svc -l app=frontend
+No resources found in default namespace.
+
+controlplane /home/example ➜  vi service.yaml
+
+controlplane /home/example ➜  kubectl get svc -l name=nginx-service
+No resources found in default namespace.
+
+controlplane /home/example ➜  kubectl get svc | grep nginx-service
+nginx-service   ClusterIP   172.20.252.19   <none>        80/TCP    76s
+
+controlplane /home/example ➜  kubectl describe svc nginx-service
+Name:                     nginx-service
+Namespace:                default
+Labels:                   <none>
+Annotations:              <none>
+Selector:                 app=frontend
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       172.20.252.19
+IPs:                      172.20.252.19
+Port:                     <unset>  80/TCP
+TargetPort:               80/TCP
+Endpoints:                172.17.2.2:80
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   <none>
+
+controlplane /home/example ➜  kubectl get pod -l app=frontend
+NAME        READY   STATUS    RESTARTS   AGE
+nginx-pod   1/1     Running   0          40m
+
+controlplane /home/example ➜  kubectl logs nginx-pod
+
+controlplane /home/example ➜  curl -v http://172.20.252.19 
+*   Trying 172.20.252.19:80...
+* Connected to 172.20.252.19 (172.20.252.19) port 80 (#0)
+> GET / HTTP/1.1
+> Host: 172.20.252.19
+> User-Agent: curl/7.81.0
+> Accept: */*
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Server: nginx/1.7.9
+< Date: Wed, 25 Feb 2026 17:33:46 GMT
+< Content-Type: text/html
+< Content-Length: 612
+< Last-Modified: Tue, 23 Dec 2014 16:25:09 GMT
+< Connection: keep-alive
+< ETag: "54999765-264"
+< Accept-Ranges: bytes
+< 
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+* Connection #0 to host 172.20.252.19 left intact
+
+controlplane /home/example ➜  kubectl logs nginx-pod
+172.17.0.0 - - [25/Feb/2026:17:33:46 +0000] "GET / HTTP/1.1" 200 612 "-" "curl/7.81.0" "-"
+
+controlplane /home/example ➜  vi service.yaml 
+
+controlplane /home/example ➜  kubectl apply -f service.yaml 
+service/nginx-service configured
+
+controlplane /home/example ➜  kubectl get svc | grep nginx-service
+nginx-service   ClusterIP   172.20.252.19   <none>        80/TCP    6m20s
+
+controlplane /home/example ➜  kubectl describe svc nginx-service
+Name:                     nginx-service
+Namespace:                default
+Labels:                   <none>
+Annotations:              <none>
+Selector:                 app=backend
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       172.20.252.19
+IPs:                      172.20.252.19
+Port:                     <unset>  80/TCP
+TargetPort:               80/TCP
+Endpoints:                172.17.1.2:80
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   <none>
+
+controlplane /home/example ➜  kubectl get pod -l app=backend
+NAME         READY   STATUS    RESTARTS   AGE
+nginx-pod2   1/1     Running   0          40m
+
+controlplane /home/example ➜  kubectl logs nginx-pod2
+
+controlplane /home/example ➜  curl -v  http://172.20.252.19
+*   Trying 172.20.252.19:80...
+* Connected to 172.20.252.19 (172.20.252.19) port 80 (#0)
+> GET / HTTP/1.1
+> Host: 172.20.252.19
+> User-Agent: curl/7.81.0
+> Accept: */*
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Server: nginx/1.7.9
+< Date: Wed, 25 Feb 2026 17:35:41 GMT
+< Content-Type: text/html
+< Content-Length: 612
+< Last-Modified: Tue, 23 Dec 2014 16:25:09 GMT
+< Connection: keep-alive
+< ETag: "54999765-264"
+< Accept-Ranges: bytes
+< 
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+* Connection #0 to host 172.20.252.19 left intact
+
+controlplane /home/example ➜  kubectl logs nginx-pod2
+172.17.0.0 - - [25/Feb/2026:17:35:41 +0000] "GET / HTTP/1.1" 200 612 "-" "curl/7.81.0" "-"
+
+controlplane /home/example ➜  
+```
+
