@@ -2,6 +2,7 @@
 
 **Labels** and **Selectors** are key-value pairs attached to k8s objects.
 
+
 Kubernetes supports two types of Label selectors:
 
 1. Equality-based
