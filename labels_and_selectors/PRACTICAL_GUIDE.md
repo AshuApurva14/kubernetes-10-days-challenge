@@ -67,6 +67,7 @@ spec:
 
 ```
 -----
+#### Practical Implementation Steps:
 
 ```bash
 controlplane /home/example ➜  vi pod.yaml 
@@ -191,6 +192,9 @@ spec:
       targetPort: 80
 
 ```
+
+#### Practical Implementation Steps:
+
 
 ```bash
 controlplane /home/example ➜  vi service.yaml
