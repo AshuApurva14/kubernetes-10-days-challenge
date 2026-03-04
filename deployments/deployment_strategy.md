@@ -65,4 +65,38 @@
 
        ```
 
-       
+- **Recreate:** All existing pods are killed before new ones are created when .spec.strategy.type=Recreate
+
+   ```bash
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: rolling-update-example
+      labels:
+        app: frontend
+        environment: production
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          app: frontend
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 1
+          maxUnavailable: 0
+      template:
+        metadata:
+          labels:
+            app: frontend
+        spec:
+          containers:
+          - name: nginx
+            image: nginx:1.23.4
+            readinessProbe:
+              httpGet:
+                path: /
+                port: 80
+   
+   ```
+
