@@ -81,7 +81,7 @@
         matchLabels:
           app: frontend
       strategy:
-        type: RollingUpdate
+        type: Recreate
         rollingUpdate:
           maxSurge: 1
           maxUnavailable: 0
