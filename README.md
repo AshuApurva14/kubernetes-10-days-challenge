@@ -1,4 +1,6 @@
-# Kubernetes 10 Days Challenge
+---
+title: Kubernetes 10 Days Challenge
+---
 
 <img width="1024" height="1024" alt="Image" src="https://github.com/user-attachments/assets/c5f0a0bd-6bfb-4786-8166-a5ba97f47ec5" />
 
