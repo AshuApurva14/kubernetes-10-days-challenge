@@ -1,6 +1,4 @@
----
-title: Kubernetes 10 Days Challenge
----
+# Kubernetes 10 Days Challenge 
 
 <img width="1024" height="1024" alt="Image" src="https://github.com/user-attachments/assets/c5f0a0bd-6bfb-4786-8166-a5ba97f47ec5" />
 
@@ -8,7 +6,7 @@ A structured learning path to master Kubernetes fundamentals through daily chall
 
 ## 📚 Overview
 
-This repository contains a 10-day challenge designed to help you learn Kubernetes step by step. Each day focuses on specific Kubernetes concepts with practical challenges and solutions.
+This repository contains a 10-day challenge designed to help you learn Kubernetes step-by-step. Each day focuses on specific Kubernetes concepts with practical challenges and solutions.
 
 ## 🗂️ Repository Structure
 
