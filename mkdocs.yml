@@ -1,0 +1,17 @@
+site_name: Kubernetes 10 Days Challenge
+nav:
+  - Home: index.md
+  - Day 1: Day_1/docs.md
+  - Day 2: Day_2/docs.md
+  - Day 3: Day_3/docs.md
+  - Day 4: Day_4/docs.md
+  - Day 5: Day_5/docs.md
+  - Day 6: Day_6/docs.md
+  - Day 7: Day_7/docs.md
+  - Day 8: Day_8/docs.md
+  - Day 9: Day_9/docs.md
+  - Day 10: Day_10/docs.md
+theme:
+  name: material
+plugins:
+  - search
