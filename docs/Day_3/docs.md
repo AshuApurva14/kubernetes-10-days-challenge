@@ -37,3 +37,12 @@ The Node’s kubelet actually does the creation.
 → The Controller tells Kubernetes to create another Pod.
 
 ---
+
+***5. Cloud Controller Manager (Optional):*** Cloud integration
+Used in cloud environments like AWS, GCP, or Azure.
+It can create Load Balancers, attach storage, and sync cloud metadata.
+
+👉 Not needed for local clusters like minikube or kind.
+
+---
+
