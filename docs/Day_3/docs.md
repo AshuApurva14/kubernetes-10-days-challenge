@@ -1,4 +1,4 @@
-## Day 3 - Kubernetes basics
+## Day 3 - Kubernetes Control Plane Components
 
 ### *Who actually runs the kubernetes?*
 
