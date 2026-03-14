@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#day-5-kubernetes-services" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -331,6 +336,24 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 5
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -347,6 +370,73 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#day-5-kubernetes-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Day 5 - Kubernetes Services
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Day 5 - Kubernetes Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-services-work-plain-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Services Work (Plain Version)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-types-of-kubernetes-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Types of Kubernetes Services:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -505,6 +595,64 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#day-5-kubernetes-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Day 5 - Kubernetes Services
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Day 5 - Kubernetes Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-services-work-plain-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Services Work (Plain Version)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-types-of-kubernetes-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Types of Kubernetes Services:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -522,7 +670,82 @@
 
   <h1>Day 5</h1>
 
+<h2 id="day-5-kubernetes-services">Day 5 - Kubernetes Services</h2>
+<p><strong>Your pod is running but.</strong></p>
+<p><strong>How do other apps and users connect to it?</strong></p>
+<p>A Service gives you a stable way to access Pods — even as those Pods get restarted, moved, or replaced.</p>
+<p><strong>Why it’s needed:</strong></p>
+<ul>
+<li>Pods come and go.</li>
+<li>Their IPs change.</li>
+<li>But your users (or other Pods) need a reliable way to reach them.</li>
+</ul>
+<h3 id="how-services-work-plain-version">How Services Work (Plain Version)</h3>
+<ul>
+<li>You define a Service in YAML</li>
+<li>It uses labels to select matching Pods</li>
+<li>Kubernetes gives the Service a virtual IP</li>
+<li>All traffic to that IP is routed to one of the Pods</li>
+</ul>
+<p>Example:</p>
+<p>Your my-service can route traffic to multiple Pods like Pod A, Pod B, and Pod C — as long as they share a label like <code>app=nginx</code>.</p>
+<hr />
+<h2 id="4-types-of-kubernetes-services">4 Types of Kubernetes Services:</h2>
+<p><strong>1. ClusterIP (default)</strong></p>
+<ul>
+<li>Accessible only within the cluster</li>
+<li>Perfect for: microservices talking to each other</li>
+<li>Example use case: Backend service talking to a database</li>
+</ul>
+<p><code>type: ClusterIP</code></p>
+<hr />
+<p><strong>2. NodePort:</strong></p>
+<ul>
+<li>Opens a port on every Node</li>
+<li>Accessible via <NodeIP>:<NodePort></li>
+<li>Good for: quick testing or exposing simple apps externally</li>
+</ul>
+<pre><code class="language-bash">type: NodePort
+ports:
+  - port: 80
+    nodePort: 30080
+</code></pre>
+<hr />
+<p><strong>3.LoadBalancer:</strong></p>
+<ul>
+<li>Creates an external IP using a cloud provider</li>
+<li>Good for: production use in cloud (AWS, GCP, Azure)</li>
+<li>Requires cloud setup</li>
+</ul>
+<hr />
+<p><strong>4.ExternalName:</strong></p>
+<ul>
+<li>Maps a Service to an external DNS</li>
+<li>Doesn’t route traffic — just redirects to a hostname</li>
+<li>Good for: pointing to something like api.stripe.com</li>
+</ul>
+<pre><code class="language-bash">
+type: ExternalName
+externalName: example.com
 
+</code></pre>
+<hr />
+<h2 id="service-example">Service Example</h2>
+<p>Here’s a basic Service that exposes NGINX Pods:</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP
+
+</code></pre>
+<p>👉 This will route traffic on port 80 to any Pod with app=nginx.</p>
 
 
 
