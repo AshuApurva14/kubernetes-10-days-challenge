@@ -367,6 +367,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="What is the Control Plane?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -627,6 +644,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="What is the Control Plane?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -658,6 +692,21 @@
 <li>Responds if anything changes</li>
 <li>Stores the actual and desired state of the cluster.</li>
 </ul>
+<p><strong>NOTE: When you type <code>kubectl</code> then you are talking to Control Plane</strong></p>
+<h3 id="core-components"><strong>Core Components</strong></h3>
+<p><strong><em>1. API Server:</em></strong> This is the front door of your cluster.Every <code>kubectl</code> command you run goes to <code>API Server</code>, then it validates processes and requests and store the desired state in <code>etcd</code>. It is a central communication hub.</p>
+<hr />
+<p><strong><em>2. etcd:</em></strong> The Key-Value pair database of your cluster. It stores everything: current cluster state, secrets, configmaps, objects specs --- everything.</p>
+<p>👉  You never interact with etcd directly. Only the API Server does.</p>
+<hr />
+<p><strong><em>3. Schedular:</em></strong> Assigns pods to nodes based on constraints(Node rules, affinity rules) and resources(Based on available CPU, Memory etc.) It decides where new pods go, when new pods needs to be created. The Schedular picks the best node for it.</p>
+<p>👉 The Scheduler doesn’t start Pods — it just assigns them.
+The Node’s kubelet actually does the creation.</p>
+<hr />
+<p><strong><em>4. Controller manager:</em></strong> It runs controllers to maintain desired state of the cluster. Keeps the state sync(By comparing the desired state with current state in etcd). If Pod crashes, then it notices and take action to replace it.</p>
+<p><strong><em>Example:</em></strong>  You want 3 Pods, but only 2 are running?
+→ The Controller tells Kubernetes to create another Pod.</p>
+<hr />
 
 
 
