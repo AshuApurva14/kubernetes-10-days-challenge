@@ -1,0 +1,1000 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>PRACTICAL GUIDE - Kubernetes 10 Days Challenge</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#labels-and-selectors-in-kubernetes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Kubernetes 10 Days Challenge" class="md-header__button md-logo" aria-label="Kubernetes 10 Days Challenge" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kubernetes 10 Days Challenge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PRACTICAL GUIDE
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Kubernetes 10 Days Challenge" class="md-nav__button md-logo" aria-label="Kubernetes 10 Days Challenge" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Kubernetes 10 Days Challenge
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_1/docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_2/docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_3/docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_4/docs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_5/docs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_6/docs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_7/docs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_8/docs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_9/docs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_10/docs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#labels-and-selectors-in-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Labels and Selectors in Kubernetes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Labels and Selectors in Kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practical-implementation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Implementation Steps:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-a-service-using-label-selector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Define a Service using Label Selector
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Define a Service using Label Selector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practical-implementation-steps_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Implementation Steps:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>PRACTICAL GUIDE</h1>
+
+<h2 id="labels-and-selectors-in-kubernetes">Labels and Selectors in Kubernetes</h2>
+<p><strong>Labels</strong> and <strong>Selectors</strong> are key-value pairs attached to k8s objects.</p>
+<p>Kubernetes supports two types of Label selectors:</p>
+<ol>
+<li>Equality-based</li>
+<li>Three kinds of operators are admitted ( =,==,!=).</li>
+<li>
+<p>Example:
+      <code>bash
+       environment = production
+      tier != frontend</code></p>
+</li>
+<li>
+<p>Set-based</p>
+</li>
+<li>
+<p>Three kinds of operators are supported: in,notin and exists (only the key identifier).</p>
+</li>
+<li>
+<p>Example:</p>
+<p>```bash
+  environment in (production, qa)
+ tier notin (frontend, backend)
+  partition
+  !partition</p>
+<p>```</p>
+</li>
+</ol>
+<p>Below are the real practical implementations of labels and selectors:</p>
+<pre><code class="language-bash">#pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: frontend
+    environment: production
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx:1.7.9
+    ports:
+    - containerPort: 80
+</code></pre>
+<hr />
+<pre><code class="language-bash"># pod2.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod2
+  labels:
+    app: backend
+    environment: production
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx:1.7.9
+    ports:
+    - containerPort: 80
+
+</code></pre>
+<hr />
+<h4 id="practical-implementation-steps">Practical Implementation Steps:</h4>
+<pre><code class="language-bash">controlplane /home/example ➜  vi pod.yaml 
+
+controlplane /home/example ➜  kubectl apply -f pod.yaml 
+pod/nginx-pod created
+
+controlplane /home/example ➜  kubectl get  pods
+NAME        READY   STATUS              RESTARTS   AGE
+nginx-pod   0/1     ContainerCreating   0          6s
+
+controlplane /home/example ➜  kubectl get  pods
+NAME        READY   STATUS    RESTARTS   AGE
+nginx-pod   1/1     Running   0          9s
+
+controlplane /home/example ➜  kubectl describe pod nginx-pod
+Name:             nginx-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node02/192.168.27.7
+Start Time:       Wed, 25 Feb 2026 16:51:05 +0000
+Labels:           app=frontend
+                  environment=production
+Annotations:      cni.projectcalico.org/containerID: 2f6cb7f9d8913d92e521f6ccda0301ed28b3e97b738f7b95fb07b1b7937152df
+                  cni.projectcalico.org/podIP: 172.17.2.2/32
+                  cni.projectcalico.org/podIPs: 172.17.2.2/32
+Status:           Running
+IP:               172.17.2.2
+IPs:
+  IP:  172.17.2.2
+Containers:
+  nginx-container:
+    Container ID:   containerd://8e565200d6f99c009036e0d089a643b4ac2912dd775795351ee37aeb5c5b430a
+    Image:          nginx:1.7.9
+    Image ID:       sha256:35d28df486f6150fa3174367499d1eb01f22f5a410afe4b9581ac0e0e58b3eaf
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Wed, 25 Feb 2026 16:51:12 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    &lt;none&gt;
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gdzg4 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-gdzg4:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              &lt;none&gt;
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  24s   default-scheduler  Successfully assigned default/nginx-pod to node02
+  Normal  Pulling    23s   kubelet            spec.containers{nginx-container}: Pulling image &quot;nginx:1.7.9&quot;
+  Normal  Pulled     17s   kubelet            spec.containers{nginx-container}: Successfully pulled image &quot;nginx:1.7.9&quot; in 6.341s (6.341s including waiting). Image size: 39947836 bytes.
+  Normal  Created    17s   kubelet            spec.containers{nginx-container}: Container created
+  Normal  Started    17s   kubelet            spec.containers{nginx-container}: Container started
+
+controlplane /home/example ➜  kubectl get pod -l app=frontend 
+NAME        READY   STATUS    RESTARTS   AGE
+nginx-pod   1/1     Running   0          96s
+
+controlplane /home/example ➜  kubectl get pod -l app=frontend,environment=production
+NAME        READY   STATUS    RESTARTS   AGE
+nginx-pod   1/1     Running   0          2m1s
+
+controlplane /home/example ➜  vi pod2.yml
+
+controlplane /home/example ➜  kubectl apply -f pod2.yml 
+pod/nginx-pod2 created
+
+controlplane /home/example ➜  kubectl get pod -l app=backend
+NAME         READY   STATUS    RESTARTS   AGE
+nginx-pod2   1/1     Running   0          14s
+
+controlplane /home/example ➜  kubectl get pod -l app=backend,environment=production
+NAME         READY   STATUS    RESTARTS   AGE
+nginx-pod2   1/1     Running   0          27s
+
+controlplane /home/example ➜  kubectl get pod -l environment=production
+NAME         READY   STATUS    RESTARTS   AGE
+nginx-pod    1/1     Running   0          4m6s
+nginx-pod2   1/1     Running   0          44s
+
+controlplane /home/example ➜  kubectl get pod -l 'environment in (production),app notin(frontend)'
+NAME         READY   STATUS    RESTARTS   AGE
+nginx-pod2   1/1     Running   0          106s
+
+controlplane /home/example ➜  
+</code></pre>
+<h3 id="define-a-service-using-label-selector">Define a Service using Label Selector</h3>
+<p>Create a <code>service.yaml</code> and define a label selector for each of the pods.</p>
+<pre><code class="language-bash"># Service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+</code></pre>
+<h4 id="practical-implementation-steps_1">Practical Implementation Steps:</h4>
+<pre><code class="language-bash">controlplane /home/example ➜  vi service.yaml
+
+controlplane /home/example ➜  kubectl apply -f service.yaml 
+service/nginx-service created
+
+controlplane /home/example ➜  kubectl get svc
+NAME            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+kubernetes      ClusterIP   172.20.0.1      &lt;none&gt;        443/TCP   79m
+nginx-service   ClusterIP   172.20.252.19   &lt;none&gt;        80/TCP    11s
+
+controlplane /home/example ➜  kubectl get svc -l app=frontend
+No resources found in default namespace.
+
+controlplane /home/example ➜  vi service.yaml
+
+controlplane /home/example ➜  kubectl get svc -l name=nginx-service
+No resources found in default namespace.
+
+controlplane /home/example ➜  kubectl get svc | grep nginx-service
+nginx-service   ClusterIP   172.20.252.19   &lt;none&gt;        80/TCP    76s
+
+controlplane /home/example ➜  kubectl describe svc nginx-service
+Name:                     nginx-service
+Namespace:                default
+Labels:                   &lt;none&gt;
+Annotations:              &lt;none&gt;
+Selector:                 app=frontend
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       172.20.252.19
+IPs:                      172.20.252.19
+Port:                     &lt;unset&gt;  80/TCP
+TargetPort:               80/TCP
+Endpoints:                172.17.2.2:80
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   &lt;none&gt;
+
+controlplane /home/example ➜  kubectl get pod -l app=frontend
+NAME        READY   STATUS    RESTARTS   AGE
+nginx-pod   1/1     Running   0          40m
+
+controlplane /home/example ➜  kubectl logs nginx-pod
+
+controlplane /home/example ➜  curl -v http://172.20.252.19 
+*   Trying 172.20.252.19:80...
+* Connected to 172.20.252.19 (172.20.252.19) port 80 (#0)
+&gt; GET / HTTP/1.1
+&gt; Host: 172.20.252.19
+&gt; User-Agent: curl/7.81.0
+&gt; Accept: */*
+&gt; 
+* Mark bundle as not supporting multiuse
+&lt; HTTP/1.1 200 OK
+&lt; Server: nginx/1.7.9
+&lt; Date: Wed, 25 Feb 2026 17:33:46 GMT
+&lt; Content-Type: text/html
+&lt; Content-Length: 612
+&lt; Last-Modified: Tue, 23 Dec 2014 16:25:09 GMT
+&lt; Connection: keep-alive
+&lt; ETag: &quot;54999765-264&quot;
+&lt; Accept-Ranges: bytes
+&lt; 
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+* Connection #0 to host 172.20.252.19 left intact
+
+controlplane /home/example ➜  kubectl logs nginx-pod
+172.17.0.0 - - [25/Feb/2026:17:33:46 +0000] &quot;GET / HTTP/1.1&quot; 200 612 &quot;-&quot; &quot;curl/7.81.0&quot; &quot;-&quot;
+
+controlplane /home/example ➜  vi service.yaml 
+
+controlplane /home/example ➜  kubectl apply -f service.yaml 
+service/nginx-service configured
+
+controlplane /home/example ➜  kubectl get svc | grep nginx-service
+nginx-service   ClusterIP   172.20.252.19   &lt;none&gt;        80/TCP    6m20s
+
+controlplane /home/example ➜  kubectl describe svc nginx-service
+Name:                     nginx-service
+Namespace:                default
+Labels:                   &lt;none&gt;
+Annotations:              &lt;none&gt;
+Selector:                 app=backend
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       172.20.252.19
+IPs:                      172.20.252.19
+Port:                     &lt;unset&gt;  80/TCP
+TargetPort:               80/TCP
+Endpoints:                172.17.1.2:80
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   &lt;none&gt;
+
+controlplane /home/example ➜  kubectl get pod -l app=backend
+NAME         READY   STATUS    RESTARTS   AGE
+nginx-pod2   1/1     Running   0          40m
+
+controlplane /home/example ➜  kubectl logs nginx-pod2
+
+controlplane /home/example ➜  curl -v  http://172.20.252.19
+*   Trying 172.20.252.19:80...
+* Connected to 172.20.252.19 (172.20.252.19) port 80 (#0)
+&gt; GET / HTTP/1.1
+&gt; Host: 172.20.252.19
+&gt; User-Agent: curl/7.81.0
+&gt; Accept: */*
+&gt; 
+* Mark bundle as not supporting multiuse
+&lt; HTTP/1.1 200 OK
+&lt; Server: nginx/1.7.9
+&lt; Date: Wed, 25 Feb 2026 17:35:41 GMT
+&lt; Content-Type: text/html
+&lt; Content-Length: 612
+&lt; Last-Modified: Tue, 23 Dec 2014 16:25:09 GMT
+&lt; Connection: keep-alive
+&lt; ETag: &quot;54999765-264&quot;
+&lt; Accept-Ranges: bytes
+&lt; 
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+* Connection #0 to host 172.20.252.19 left intact
+
+controlplane /home/example ➜  kubectl logs nginx-pod2
+172.17.0.0 - - [25/Feb/2026:17:35:41 +0000] &quot;GET / HTTP/1.1&quot; 200 612 &quot;-&quot; &quot;curl/7.81.0&quot; &quot;-&quot;
+
+controlplane /home/example ➜  
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

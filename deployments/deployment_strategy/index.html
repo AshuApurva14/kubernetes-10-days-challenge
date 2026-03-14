@@ -1,0 +1,911 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Deployment strategy - Kubernetes 10 Days Challenge</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#strategy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Kubernetes 10 Days Challenge" class="md-header__button md-logo" aria-label="Kubernetes 10 Days Challenge" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kubernetes 10 Days Challenge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Deployment strategy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Kubernetes 10 Days Challenge" class="md-nav__button md-logo" aria-label="Kubernetes 10 Days Challenge" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Kubernetes 10 Days Challenge
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_1/docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_2/docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_3/docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_4/docs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_5/docs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_6/docs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_7/docs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_8/docs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_9/docs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Day_10/docs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Deployment strategy</h1>
+
+<h2 id="strategy">Strategy</h2>
+<p><code>.spec.strategy</code> specifies the strategy used to replace old pods with new ones. <code>.spec.strategy.type</code> can be <strong>RollingUpdate</strong> or <strong>Recreate</strong>. RollingUpdate is the default one.</p>
+<ul>
+<li>
+<p><strong>RollingUpdate:</strong> Replaces old pods running the old version of the application with the  new version, one by one, without taking the cluster down.</p>
+</li>
+<li>
+<p>The deployments update pod in rolling update fashion when <code>.spec.strategy.type=RollingUpdate.</code></p>
+</li>
+</ul>
+<p>```bash
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: rolling-update-example
+      labels:
+        app: frontend
+        environment: production
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          app: frontend
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 1
+          maxUnavailable: 0
+      template:
+        metadata:
+          labels:
+            app: frontend
+        spec:
+          containers:
+          - name: nginx
+            image: nginx:1.23.4
+            readinessProbe:
+              httpGet:
+                path: /
+                port: 80</p>
+<p>```</p>
+<ul>
+<li>
+<p><code>spec.selector.matchLables</code> , <code>.spec.template.metadata.labels</code> must be added before creating any pod.</p>
+<p>```bash</p>
+<p>controlplane ~/deployment ➜  kubectl apply -f rollingupdate.yaml 
+  deployment.apps/rolling-update-example created</p>
+<p>controlplane ~/deployment ➜  </p>
+<p>controlplane ~/deployment ➜  kubectl get deployment
+  NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
+  rolling-update-example   3/3     3            3           9s</p>
+<p>controlplane ~/deployment ➜  kubectl get replicaset
+  NAME                                DESIRED   CURRENT   READY   AGE
+  rolling-update-example-75cb644d55   3         3         3       18s</p>
+<p>controlplane ~/deployment ➜  kubectl get pod
+  NAME                                      READY   STATUS    RESTARTS   AGE
+  rolling-update-example-75cb644d55-jcw5f   1/1     Running   0          24s
+  rolling-update-example-75cb644d55-kfp22   1/1     Running   0          24s
+  rolling-update-example-75cb644d55-n4v62   1/1     Running   0          24s</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Recreate:</strong> All existing pods are killed before new ones are created when .spec.strategy.type=Recreate</p>
+</li>
+</ul>
+<p>```bash
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: rolling-update-example
+      labels:
+        app: frontend
+        environment: production
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          app: frontend
+      strategy:
+        type: Recreate
+        rollingUpdate:
+          maxSurge: 1
+          maxUnavailable: 0
+      template:
+        metadata:
+          labels:
+            app: frontend
+        spec:
+          containers:
+          - name: nginx
+            image: nginx:1.23.4
+            readinessProbe:
+              httpGet:
+                path: /
+                port: 80</p>
+<p>```</p>
+<ul>
+<li>
+<p>Update the image tag</p>
+<p>```bash
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rolling-update-example
+  labels:
+    app: frontend
+    environment: production
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend
+  strategy:
+    type: Recreate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.29-perl
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80</p>
+</li>
+</ul>
+<p>```</p>
+<hr />
+<p>```bash</p>
+<p>controlplane /home/deployment ➜  kubectl apply -f deployment.yml 
+  deployment.apps/recreate-update-example created</p>
+<p>controlplane /home/deployment ➜  kubectl get deployment
+  NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+  recreate-update-example   3/3     3            3           8s</p>
+<p>controlplane /home/deployment ➜  kubectl get replicaset
+  NAME                                 DESIRED   CURRENT   READY   AGE
+  recreate-update-example-75cb644d55   3         3         3       19s</p>
+<p>controlplane /home/deployment ➜  kubectl get pods
+  NAME                                       READY   STATUS    RESTARTS   AGE
+  recreate-update-example-75cb644d55-8sjbg   1/1     Running   0          28s
+  recreate-update-example-75cb644d55-9dvj9   1/1     Running   0          28s
+  recreate-update-example-75cb644d55-g9hwn   1/1     Running   0          28s</p>
+<p>```</p>
+<ul>
+<li>
+<p>After the changes applied to the deployment yaml file</p>
+<p>```bash</p>
+<p>controlplane /home/deployment ➜  vi deployment.yml</p>
+<p>controlplane /home/deployment ➜  cat deployment.yml 
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+     name: recreate-update-example
+     labels:
+        app: frontend
+        environment: production
+  spec:
+      replicas: 3
+      selector:
+          matchLabels:
+            app: frontend
+      strategy:
+          type: Recreate
+      template:
+          metadata:
+            labels:
+              app: frontend
+          spec:
+            containers:
+            - name: nginx
+              image: nginx:1.29-perl
+              readinessProbe:
+                httpGet:
+                  path: /
+                  port: 80</p>
+<p>controlplane /home/deployment ➜  kubectl apply -f deployment.yml 
+  deployment.apps/recreate-update-example configured</p>
+<p>controlplane /home/deployment ➜  kubectl get deployment
+  NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+  recreate-update-example   0/3     3            0           4m54s</p>
+<p>controlplane /home/deployment ➜  kubectl get deployment
+  NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+  recreate-update-example   3/3     3            3           4m58s</p>
+<p>controlplane /home/deployment ➜  kubectl get replicaset
+  NAME                                 DESIRED   CURRENT   READY   AGE
+  recreate-update-example-5b9879fbc7   3         3         3       16s
+  recreate-update-example-75cb644d55   0         0         0       5m4s</p>
+<p>controlplane /home/deployment ➜  kubectl get replicaset
+  NAME                                 DESIRED   CURRENT   READY   AGE
+  recreate-update-example-5b9879fbc7   3         3         3       23s
+  recreate-update-example-75cb644d55   0         0         0       5m11s</p>
+<p>controlplane /home/deployment ➜  kubectl get replicaset
+  NAME                                 DESIRED   CURRENT   READY   AGE
+  recreate-update-example-5b9879fbc7   3         3         3       32s
+  recreate-update-example-75cb644d55   0         0         0       5m20s</p>
+<p>controlplane /home/deployment ➜  kubectl get pods
+  NAME                                       READY   STATUS    RESTARTS   AGE
+  recreate-update-example-5b9879fbc7-dgb55   1/1     Running   0          42s
+  recreate-update-example-5b9879fbc7-thrd8   1/1     Running   0          42s
+  recreate-update-example-5b9879fbc7-zdszx   1/1     Running   0          42s</p>
+<p>controlplane /home/deployment ➜  </p>
+<p>```</p>
+<ul>
+<li>
+<p>Checking the rollout history of the deployment</p>
+<ul>
+<li>
+<p>Sometimes, you may want to rollback a Deployment; for example, when the Deployment is not stable, such as crash looping.</p>
+</li>
+<li>
+<p>By default, all of the Deployment's rollout history is kept in the system so that you can rollback anytime you want (you can change that by modifying revision history limit).</p>
+</li>
+<li>
+<p>First check the revisions of the deployment</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>```bash
+    controlplane /home/deployment ➜  kubectl rollout status deployment
+    deployment "recreate-update-example" successfully rolled out</p>
+<pre><code>controlplane /home/deployment ➜  kubectl rollout history deployment
+deployment.apps/recreate-update-example 
+REVISION  CHANGE-CAUSE
+1         &lt;none&gt;
+2         &lt;none&gt;
+
+controlplane /home/deployment ➜  kubectl rollout history deployment/recreate-update-example --revision=2
+deployment.apps/recreate-update-example with revision #2
+Pod Template:
+  Labels:       app=frontend
+        pod-template-hash=5b9879fbc7
+  Containers:
+   nginx:
+    Image:      nginx:1.29-perl
+    Port:       &lt;none&gt;
+    Host Port:  &lt;none&gt;
+    Readiness:  http-get http://:80/ delay=0s timeout=1s period=10s #success=1 #failure=3
+    Environment:        &lt;none&gt;
+    Mounts:     &lt;none&gt;
+  Volumes:      &lt;none&gt;
+  Node-Selectors:       &lt;none&gt;
+  Tolerations:  &lt;none&gt;
+
+controlplane /home/deployment ➜  kubectl rollout history deployment/recreate-update-example --revision=1
+deployment.apps/recreate-update-example with revision #1
+Pod Template:
+  Labels:       app=frontend
+        pod-template-hash=75cb644d55
+  Containers:
+   nginx:
+    Image:      nginx:1.23.4
+    Port:       &lt;none&gt;
+    Host Port:  &lt;none&gt;
+    Readiness:  http-get http://:80/ delay=0s timeout=1s period=10s #success=1 #failure=3
+    Environment:        &lt;none&gt;
+    Mounts:     &lt;none&gt;
+  Volumes:      &lt;none&gt;
+  Node-Selectors:       &lt;none&gt;
+  Tolerations:  &lt;none&gt;
+
+controlplane /home/deployment ➜
+</code></pre>
+<p>```</p>
+</li>
+<li>
+<p>Rolling Back to a Previous Revision</p>
+<p>```bash
+  controlplane /home/deployment ➜  kubectl rollout undo deployment/recreate-update-example
+  deployment.apps/recreate-update-example rolled back</p>
+<p>controlplane /home/deployment ➜  kubectl rollout history deployment
+  deployment.apps/recreate-update-example 
+  REVISION  CHANGE-CAUSE
+  2         <none>
+  3         <none></p>
+<p>controlplane /home/deployment ➜  kubectl rollout history deployment/recreate-update-example --revision=2
+  deployment.apps/recreate-update-example with revision #2
+  Pod Template:
+    Labels:       app=frontend
+          pod-template-hash=5b9879fbc7
+    Containers:
+     nginx:
+      Image:      nginx:1.29-perl
+      Port:       <none>
+      Host Port:  <none>
+      Readiness:  http-get http://:80/ delay=0s timeout=1s period=10s #success=1 #failure=3
+      Environment:        <none>
+      Mounts:     <none>
+    Volumes:      <none>
+    Node-Selectors:       <none>
+    Tolerations:  <none></p>
+<p>controlplane /home/deployment ➜  kubectl rollout history deployment/recreate-update-example --revision=3
+  deployment.apps/recreate-update-example with revision #3
+  Pod Template:
+    Labels:       app=frontend
+          pod-template-hash=75cb644d55
+    Containers:
+     nginx:
+      Image:      nginx:1.23.4
+      Port:       <none>
+      Host Port:  <none>
+      Readiness:  http-get http://:80/ delay=0s timeout=1s period=10s #success=1 #failure=3
+      Environment:        <none>
+      Mounts:     <none>
+    Volumes:      <none>
+    Node-Selectors:       <none>
+    Tolerations:  <none></p>
+<p>controlplane /home/deployment ➜  </p>
+<p>```</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
