@@ -9,6 +9,8 @@
       
       
       
+        <link rel="prev" href="../../Day_5/docs/">
+      
       
       
         
@@ -19,7 +21,7 @@
     
     
       
-        <title>Challenge - Kubernetes 10 Days Challenge</title>
+        <title>Day 6 - Kubernetes 10 Days Challenge</title>
       
     
     
@@ -59,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#day-6-label-selectors-and-namespace" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -91,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Challenge
+              Day 6
             
           </span>
         </div>
@@ -346,10 +353,35 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../docs.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 6
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -365,6 +397,85 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#day-6-label-selectors-and-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Day 6 - Label, Selectors and Namespace
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Day 6 - Label, Selectors and Namespace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-does-kubernetes-keeps-everything-organised" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How does Kubernetes keeps everything organised?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-labels-add-meaning-to-your-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Labels - Add Meaning to your Objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-selectors-find-resources-by-label" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Selectors — Find Resources by Label
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-namespaces-organize-and-isolate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Namespaces — Organize and Isolate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -495,6 +606,75 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#day-6-label-selectors-and-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Day 6 - Label, Selectors and Namespace
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Day 6 - Label, Selectors and Namespace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-does-kubernetes-keeps-everything-organised" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How does Kubernetes keeps everything organised?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-labels-add-meaning-to-your-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Labels - Add Meaning to your Objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-selectors-find-resources-by-label" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Selectors — Find Resources by Label
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-namespaces-organize-and-isolate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Namespaces — Organize and Isolate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -510,9 +690,77 @@
 
 
 
-  <h1>Challenge</h1>
+  <h1>Day 6</h1>
 
-
+<h2 id="day-6-label-selectors-and-namespace">Day 6 - Label, Selectors and Namespace</h2>
+<h3 id="how-does-kubernetes-keeps-everything-organised">How does Kubernetes keeps everything organised?</h3>
+<p>With three powerful concepts:</p>
+<ul>
+<li><code>Labels</code></li>
+<li><code>Selectors</code></li>
+<li><code>Namespace</code></li>
+</ul>
+<p>Let's breakdown each one them</p>
+<h3 id="1-labels-add-meaning-to-your-objects">1. Labels - Add Meaning to your Objects</h3>
+<p>A <code>Label</code> is a simple <code>key-pair value</code> you can attach to any kubernetes object.</p>
+<ul>
+<li>Pods</li>
+<li>Services</li>
+<li>Deployments</li>
+<li>Nodes</li>
+<li>And more</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-yaml">labels:
+  app: web
+  env: prod
+</code></pre>
+<p>This Pod is now tagged with two labels:</p>
+<pre><code class="language-yaml">app=web
+env=prod
+</code></pre>
+<p>📌 Labels aren’t just for grouping — they’re the glue that ties Services to Pods, or filters resources with kubectl.</p>
+<hr />
+<h3 id="2-selectors-find-resources-by-label">2. Selectors — Find Resources by Label</h3>
+<p>A selector tells Kubernetes:</p>
+<pre><code>“Find me all objects that match these labels.”
+</code></pre>
+<p>This is how:</p>
+<ul>
+<li>Services find the correct Pods</li>
+<li>Deployments manage matching Pods</li>
+<li>You query things with kubectl</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-yaml">selector:
+  app: web
+</code></pre>
+<p>This matches any Pod with the label <code>app=web.</code></p>
+<p>Try this CLI command:</p>
+<p><code>kubectl get pods -l app=web</code></p>
+<hr />
+<h3 id="3-namespaces-organize-and-isolate">3. Namespaces — Organize and Isolate</h3>
+<p><strong>A namespace is like a mini-cluster within your Kubernetes cluster.</strong></p>
+<p>You can use them to:</p>
+<ul>
+<li>Group resources by project or environment</li>
+<li>Avoid name collisions</li>
+<li>Apply security boundaries</li>
+<li>Every object in Kubernetes exists inside a namespace — even if it’s the default one.</li>
+</ul>
+<p>CLI examples:</p>
+<ul>
+<li><code>kubectl get namespaces</code>   # See all namespaces  </li>
+<li><code>kubectl get pods -n dev</code>  # See Pods in the dev namespace  </li>
+<li><code>kubectl create namespace staging</code>  # Create a new namespace</li>
+</ul>
+<p>📌 Some default namespaces:</p>
+<ul>
+<li><code>default</code> – where most of your stuff goes</li>
+<li><code>kube-system</code> – internal components</li>
+<li><code>kube-public</code> – public info</li>
+<li><code>kube-node-lease</code> – used for Node heartbeats</li>
+</ul>
 
 
 
