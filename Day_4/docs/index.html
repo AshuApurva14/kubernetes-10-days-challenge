@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../../Day_3/docs/">
+      
+      
+        <link rel="next" href="../../Day_5/docs/">
       
       
         
@@ -19,7 +23,7 @@
     
     
       
-        <title>Solution - Kubernetes 10 Days Challenge</title>
+        <title>Day 4 - Kubernetes 10 Days Challenge</title>
       
     
     
@@ -59,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#what-happens-when" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -91,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Solution
+              Day 4
             
           </span>
         </div>
@@ -292,10 +301,35 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../Day_4/docs.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 4
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -311,6 +345,107 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-happens-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What happens When ....
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What happens When ....">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-your-yaml-hits-the-api-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Your YAML hits the API Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-api-server-stores-it-in-etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: API Server Stores It in etcd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step3-controller-notices-somethings-missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step3: Controller Notices Something’s Missing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-scheduler-picks-the-best-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Scheduler Picks the Best Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-kubelet-on-the-node-start-to-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Kubelet on the Node Start to work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-pod-is-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Pod is running
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -322,7 +457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../docs.md" class="md-nav__link">
+      <a href="../../Day_5/docs/" class="md-nav__link">
         
   
   
@@ -495,6 +630,97 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-happens-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What happens When ....
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What happens When ....">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-your-yaml-hits-the-api-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Your YAML hits the API Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-api-server-stores-it-in-etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: API Server Stores It in etcd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step3-controller-notices-somethings-missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step3: Controller Notices Something’s Missing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-scheduler-picks-the-best-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Scheduler Picks the Best Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-kubelet-on-the-node-start-to-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Kubelet on the Node Start to work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-pod-is-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Pod is running
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -510,9 +736,59 @@
 
 
 
-  <h1>Solution</h1>
+  <h1>Day 4</h1>
 
+<h2 id="what-happens-when">What happens When ....</h2>
+<p>When you run the below commands:</p>
+<p><code>kubectl apply -f pod.yaml</code></p>
+<p>What actually happens after that? Underneath how the defined manifest in file <code>pod.yaml</code> creates and start the pod.</p>
+<p>Let walk through the journey step by step from YAML manifest to running a container.</p>
+<h3 id="step-1-your-yaml-hits-the-api-server"><strong>Step 1:</strong> Your YAML hits the API Server</h3>
+<pre><code class="language-YAML">
+USER Submits the manifest ---&gt; API Server  ---&gt; etcd stores state
 
+</code></pre>
+<p>Your Pod definition is sent to API Server which is front door of your cluster.</p>
+<p>The API Server:</p>
+<ul>
+<li>Validates the YAML (checks syntax, required fields, etc.)</li>
+<li>Returns an error if anything is invalid</li>
+<li>If valid, it moves forward</li>
+</ul>
+<p>📌 All requests in Kubernetes go through the API Server.</p>
+<h3 id="step-2-api-server-stores-it-in-etcd"><strong>Step 2:</strong> API Server Stores It in etcd</h3>
+<p>Once validated, the API Server saves the desired state in the database:</p>
+<pre><code>  "A Pod named my-pod should exist in the cluster."
+</code></pre>
+<p>That database is called etcd — it stores the entire state of your cluster.</p>
+<h3 id="step3-controller-notices-somethings-missing"><strong>Step3:</strong> Controller Notices Something’s Missing</h3>
+<p>The <code>Controller Manager</code> is always watching the cluster state.</p>
+<p>It sees:</p>
+<pre><code>“There’s a record in etcd saying this Pod should exist… but I don’t see it running.”
+</code></pre>
+<p>So, it triggers the next step: <strong>Pod scheduling.</strong></p>
+<h3 id="step-4-scheduler-picks-the-best-node"><strong>Step 4:</strong> Scheduler Picks the Best Node</h3>
+<p>The Scheduler kicks in. It checks:</p>
+<ul>
+<li>CPU/memory availability</li>
+<li>Node labels and affinity</li>
+<li>Taints and tolerations</li>
+</ul>
+<p>Then it selects a Worker Node and tells the API Server to bind the Pod to that Node.</p>
+<p>📌 Remember: the Scheduler doesn’t create Pods — it just assigns them.</p>
+<h3 id="step-5-kubelet-on-the-node-start-to-work"><strong>Step 5:</strong> Kubelet on the Node Start to work</h3>
+<p>Now, Kubelet of the node will start to perform below actions:</p>
+<ul>
+<li>Pulls container image using <code>containerd</code>.</li>
+<li>Starts the container</li>
+<li>Monitors the health of pod</li>
+</ul>
+<p>If anything goes wrong(i.e image not found) kubelet reports it.</p>
+<h3 id="step-5-pod-is-running"><strong>Step 5:</strong> Pod is running</h3>
+<ul>
+<li>You can check the pod is running.</li>
+</ul>
+<p><code>kubectl get pods</code></p>
 
 
 

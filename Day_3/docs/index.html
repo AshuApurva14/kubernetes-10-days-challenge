@@ -12,6 +12,8 @@
         <link rel="prev" href="../../Day_2/docs/">
       
       
+        <link rel="next" href="../../Day_4/docs/">
+      
       
         
       
@@ -401,7 +403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Day_4/docs.md" class="md-nav__link">
+      <a href="../../Day_4/docs/" class="md-nav__link">
         
   
   
@@ -428,7 +430,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Day_5/docs.md" class="md-nav__link">
+      <a href="../../Day_5/docs/" class="md-nav__link">
         
   
   
@@ -706,6 +708,11 @@ The Node’s kubelet actually does the creation.</p>
 <p><strong><em>4. Controller manager:</em></strong> It runs controllers to maintain desired state of the cluster. Keeps the state sync(By comparing the desired state with current state in etcd). If Pod crashes, then it notices and take action to replace it.</p>
 <p><strong><em>Example:</em></strong>  You want 3 Pods, but only 2 are running?
 → The Controller tells Kubernetes to create another Pod.</p>
+<hr />
+<p><strong><em>5. Cloud Controller Manager (Optional):</em></strong> Cloud integration
+Used in cloud environments like AWS, GCP, or Azure.
+It can create Load Balancers, attach storage, and sync cloud metadata.</p>
+<p>👉 Not needed for local clusters like minikube or kind.</p>
 <hr />
 
 
