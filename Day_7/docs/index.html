@@ -9,17 +9,19 @@
       
       
       
+        <link rel="prev" href="../../Day_6/docs/">
+      
       
       
         
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Solution - Kubernetes 10 Days Challenge</title>
+        <title>Day 7 - Kubernetes 10 Days Challenge</title>
       
     
     
@@ -59,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#day-7-kubernetes-deployments-and-replicaset" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -91,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Solution
+              Day 7
             
           </span>
         </div>
@@ -373,10 +380,35 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../docs.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 7
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -392,6 +424,107 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#day-7-kubernetes-deployments-and-replicaset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Day 7 - Kubernetes Deployments and ReplicaSet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Day 7 - Kubernetes Deployments and ReplicaSet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-replicaset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is ReplicaSet ?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Deployment?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-deployment-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple Deployment Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-a-pod-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What’s a Pod Template?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-happens-when-you-update-the-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Happens When You Update the Image?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#want-to-roll-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Want to Roll Back?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -495,6 +628,97 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#day-7-kubernetes-deployments-and-replicaset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Day 7 - Kubernetes Deployments and ReplicaSet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Day 7 - Kubernetes Deployments and ReplicaSet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-replicaset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is ReplicaSet ?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Deployment?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-deployment-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple Deployment Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-a-pod-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What’s a Pod Template?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-happens-when-you-update-the-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Happens When You Update the Image?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#want-to-roll-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Want to Roll Back?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -510,9 +734,100 @@
 
 
 
-  <h1>Solution</h1>
+  <h1>Day 7</h1>
 
+<h2 id="day-7-kubernetes-deployments-and-replicaset">Day 7 - Kubernetes Deployments and ReplicaSet</h2>
+<p><em>Till now we have launched Pods and exposed them  using Services. But here is the real world problem:</em></p>
+<ul>
+<li><strong>What happens if a Pod crashes?</strong></li>
+<li><strong>What if you want 5 copies of the same app running?</strong></li>
+<li><strong>What if you need to update your app without downtime?</strong></li>
+</ul>
+<p>That’s where <code>Deployments</code> and <code>ReplicaSets</code> come in.</p>
+<hr />
+<h3 id="what-is-replicaset">What is ReplicaSet ?</h3>
+<p>A ReplicaSet ensure correct number of <code>identical Pods</code> is always running.</p>
+<ul>
+<li>If a Pod crashes → a new one is created</li>
+<li>If you scale to more replicas → more Pods are created automatically.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-yaml">  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+      env: dev
 
+</code></pre>
+<p>This tells kubernetes to keep 3 Pods running that match label <code>app=web</code></p>
+<p>📌 You rarely create ReplicaSets directly — you use a Deployment to do it.</p>
+<h3 id="what-is-deployment">What is Deployment?</h3>
+<p>A <strong>Deployment</strong> is a higher-level object that manages ReplicaSets for you.</p>
+<p>It can:</p>
+<ul>
+<li>Create and maintain ReplicaSets</li>
+<li>Handle rolling updates</li>
+<li>Perform version rollbacks</li>
+<li>Define how your app should run (via the Pod Template)</li>
+</ul>
+<p>📌 Think of a Deployment as your app’s “control system.”</p>
+<h3 id="simple-deployment-example">Simple Deployment Example</h3>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.21
+          ports:
+            - containerPort: 80
+
+</code></pre>
+<p>This will:</p>
+<ul>
+<li>Create a ReplicaSet with 3 Pods</li>
+<li>Run NGINX version 1.21</li>
+</ul>
+<p>Ensure all Pods are labeled app=web</p>
+<hr />
+<h3 id="whats-a-pod-template">What’s a Pod Template?</h3>
+<p>Inside the Deployment YAML, the template: section is your <strong>Pod Template.</strong></p>
+<p>It’s the <strong>blueprint</strong> used to create all future Pods in that Deployment.</p>
+<p>If a Pod is restarted or recreated, it’s rebuilt based on this template.</p>
+<h3 id="what-happens-when-you-update-the-image"><strong>What Happens When You Update the Image?</strong></h3>
+<p>Let’s say you update the image from nginx:1.21 to nginx:1.22.</p>
+<p>You run:</p>
+<pre><code class="language-bash">kubectl apply -f web-deployment.yaml
+</code></pre>
+<p>Kubernetes will:</p>
+<ol>
+<li>Launch new Pods with the new image</li>
+<li>Wait for them to be healthy</li>
+<li>Delete the old Pods</li>
+<li>Complete the update — with zero downtime</li>
+</ol>
+<h3 id="want-to-roll-back">Want to Roll Back?</h3>
+<p>You can easily undo any update with:</p>
+<pre><code class="language-bash">kubectl rollout undo deployment web-deployment
+</code></pre>
+<p>📌 Kubernetes tracks deployment history, so you can revert anytime.</p>
+<p>Useful Commands to Try</p>
+<pre><code class="language-bash">kubectl get deployments
+kubectl describe deployment web-deployment
+kubectl scale deployment web-deployment --replicas=5
+kubectl rollout status deployment web-deployment
+kubectl rollout undo deployment web-deployment
+</code></pre>
 
 
 
