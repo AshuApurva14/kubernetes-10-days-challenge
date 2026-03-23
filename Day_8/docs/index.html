@@ -9,6 +9,8 @@
       
       
       
+        <link rel="prev" href="../../Day_7/docs/">
+      
       
       
         
@@ -19,7 +21,7 @@
     
     
       
-        <title>Solution - Kubernetes 10 Days Challenge</title>
+        <title>Day 8 - Kubernetes 10 Days Challenge</title>
       
     
     
@@ -59,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#day-7-kubernetes-configmap-secrets-and-volumes" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -91,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Solution
+              Day 8
             
           </span>
         </div>
@@ -400,10 +407,35 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../docs.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 8
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -419,6 +451,85 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#day-7-kubernetes-configmap-secrets-and-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Day 7 - Kubernetes ConfigMap, Secrets and Volumes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Day 7 - Kubernetes ConfigMap, Secrets and Volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configmap-for-plain-configuration-non-sensitive-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ConfigMap - For Plain Configuration (Non-Sensitive Data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-secret-for-sensitive-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Secret - For Sensitive Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-volumes-for-persisting-or-sharing-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Volumes — For Persisting or Sharing Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-volume-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Volume Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -495,6 +606,75 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#day-7-kubernetes-configmap-secrets-and-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Day 7 - Kubernetes ConfigMap, Secrets and Volumes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Day 7 - Kubernetes ConfigMap, Secrets and Volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configmap-for-plain-configuration-non-sensitive-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ConfigMap - For Plain Configuration (Non-Sensitive Data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-secret-for-sensitive-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Secret - For Sensitive Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-volumes-for-persisting-or-sharing-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Volumes — For Persisting or Sharing Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-volume-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Volume Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -510,9 +690,105 @@
 
 
 
-  <h1>Solution</h1>
+  <h1>Day 8</h1>
 
+<h2 id="day-7-kubernetes-configmap-secrets-and-volumes">Day 7 - Kubernetes ConfigMap, Secrets and Volumes</h2>
+<p>You’ve deployed your app using a Deployment. It scales, updates, and rolls back — awesome.</p>
+<p>But here’s what it can’t do yet:</p>
+<ul>
+<li>Load configs from a file or environment variable</li>
+<li>Access secrets securely</li>
+<li>Store data between restarts</li>
+</ul>
+<p>Let’s fix that with:</p>
+<ul>
+<li><strong>ConfigMaps</strong></li>
+<li><strong>Secrets</strong></li>
+<li><strong>Volumes</strong></li>
+</ul>
+<h3 id="1-configmap-for-plain-configuration-non-sensitive-data">1. ConfigMap - For Plain Configuration (Non-Sensitive Data)</h3>
+<p>A ConfigMap lets you:</p>
+<ul>
+<li>Key-Value pairs</li>
+<li>Enviornment Variables</li>
+<li>App settings and args</li>
+</ul>
+<p>📌 It’s designed for non-sensitive data.</p>
+<p>Example:</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  APP_MODE: &quot;production&quot;
+  APP_PORT: &quot;8080&quot;
 
+</code></pre>
+<p>Use it in Pod like this:</p>
+<pre><code class="language-yaml">envFrom:
+  - configMapRef:
+      name: app-config
+
+</code></pre>
+<p>Now your app will receive APP_MODE and APP_PORT as environment variables.</p>
+<h3 id="2-secret-for-sensitive-data">2. Secret - For Sensitive Data</h3>
+<p><strong>Secrets</strong> are like ConfigMap, but base64 encoded and encrypted.</p>
+<p>Use them to store:</p>
+<ul>
+<li>Passwords</li>
+<li>API Tokens</li>
+<li>TLS Certificates</li>
+</ul>
+<p>📌 You should never put sensitive info directly in Pod specs or container images.</p>
+<p>Example:</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: db-secret
+type: Opaque
+data:
+  username: YWRtaW4=     # base64 for 'admin'
+  password: cGFzc3dvcmQ= # base64 for 'password'
+
+</code></pre>
+<p>Use it in your pod like this:</p>
+<pre><code class="language-yaml">env:
+  - name: DB_USER
+    valueFrom:
+      secretKeyRef:
+        name: db-secret
+        key: username
+
+</code></pre>
+<p>This injects the value without exposing it in plain YAML.</p>
+<h3 id="3-volumes-for-persisting-or-sharing-data">3. Volumes — For Persisting or Sharing Data</h3>
+<p>A Volume gives your containers access to storage.</p>
+<p>Use Volumes to:</p>
+<ul>
+<li>Save data between Pod restarts</li>
+<li>Share files between containers</li>
+<li>Mount ConfigMaps and Secrets as files</li>
+</ul>
+<p>Example: </p>
+<p>Mounting a ConfigMap as files</p>
+<pre><code class="language-yaml">volumes:
+  - name: config-volume
+    configMap:
+      name: app-config
+containers:
+  - name: app
+    volumeMounts:
+      - name: config-volume
+        mountPath: /etc/config
+</code></pre>
+<p>📌 Result: Each key in the ConfigMap becomes a file in /etc/config</p>
+<h3 id="common-volume-types">Common Volume Types</h3>
+<p>Volume Type   Use Case
+emptyDir      Scratch space (reset on Pod restart)
+hostPath      Mounts a host node folder (use with care)
+configMap     Mounts config as files
+secret        Mounts secrets as files
+persistentVolumeClaim   Durable disk (for databases, logs, etc.)</p>
 
 
 
